@@ -1,0 +1,33 @@
+#record command
+USER_IP=`who -u am i 2>/dev/null| awk '{print $NF}'|sed -e 's/[()]//g'`
+if [ "$USER_IP" = "" ]
+then
+        USER_IP=`hostname`
+fi
+if [ ! -d /tmp/operation ]
+then
+        mkdir /tmp/operation
+        chmod 777 /tmp/operation
+fi
+if [ ! -d /tmp/operation/${LOGNAME} ]
+then
+        mkdir /tmp/operation/${LOGNAME}
+        chmod 700 /tmp/operation/${LOGNAME}
+fi
+export HISTSIZE=4096
+DT=`date +%Y%m%d`
+
+file=/tmp/operation/${LOGNAME}/${USER_IP}-command.$DT
+if [ -e "$file" ]
+then
+        export HISTFILE="/tmp/operation/${LOGNAME}/${USER_IP}-command.$DT.tmp"
+        tmpfile=/tmp/operation/${LOGNAME}/${USER_IP}-command.$DT.tmp
+        if [ -e "$tmpfile" ]
+        then
+                cat /tmp/operation/${LOGNAME}/${USER_IP}-command.$DT.tmp >> $file
+        fi
+else
+        export HISTFILE="/tmp/operation/${LOGNAME}/${USER_IP}-command.$DT"
+fi
+rm -f /tmp/operation/${LOGNAME}/${USER_IP}-command.$DT.tmp
+chmod 600 /tmp/operation/${LOGNAME}/*command* 2>/dev/null
