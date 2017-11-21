@@ -3,7 +3,7 @@
 #Version 1.0
 
 #设置trade用户密码
-tpasswd=trade
+tpasswd=password
 
 #1.检查是否为root用户，脚本必须使用root权限运行
 if [[ "$(whoami)" != "root" ]]; then

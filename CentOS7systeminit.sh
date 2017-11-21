@@ -5,7 +5,7 @@
 #v2 修改默认阿里云源，修改用户的密码变量为gjs2017
 
 log=/tmp/systeminit.log
-gjspasswd=gjs2017
+gjspasswd=password
 
 #1、添加gjs用户，并赋权
 id gjs  >&/dev/null  
