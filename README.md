@@ -1,1 +1,1 @@
-shell for myself
+个人工作中用到的脚本。
